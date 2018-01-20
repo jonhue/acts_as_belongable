@@ -1,7 +1,7 @@
 module ActsAsBelongable
     module Belonger
 
-        extend ActiveSuppport::Concern
+        extend ActiveSupport::Concern
 
         module ClassMethods
             def acts_as_belonger

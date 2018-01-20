@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
     gem.homepage              = 'https://github.com/jonhue/acts_as_belongable'
     gem.license               = 'MIT'
 
-    gem.files                 = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'lib/**/*']
+    gem.files                 = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'lib/**/*', 'app/**/*']
     gem.require_paths         = ['lib']
 
     gem.post_install_message  = IO.read('INSTALL.md')
@@ -23,10 +23,6 @@ Gem::Specification.new do |gem|
     gem.add_dependency 'activesupport', '>= 5.0'
     gem.add_dependency 'activerecord', '>= 5.0'
 
-    gem.add_development_dependency 'sqlite3', '~> 1.3'
-    gem.add_development_dependency 'shoulda_create', '~> 0.0'
-    gem.add_development_dependency 'shoulda', '~> 3.5'
-    gem.add_development_dependency 'factory_girl', '~> 4.8'
-    gem.add_development_dependency 'rails', '>= 5.0'
-    gem.add_development_dependency 'tzinfo-data', '~> 1.2017'
+    gem.add_development_dependency 'rspec', '~> 3.7'
+    gem.add_development_dependency 'rubocop', '~> 0.52'
 end
