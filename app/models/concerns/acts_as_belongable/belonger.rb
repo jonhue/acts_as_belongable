@@ -12,6 +12,7 @@ module ActsAsBelongable
             def belonger name, source_type
                 has_many name.to_sym, through: :belonger_belongings, source: :belongable, source_type: source_type.to_s
             end
+
         end
 
         def add_belongable belongable, options = {}
@@ -27,11 +28,17 @@ module ActsAsBelongable
             belonging_options = options.delete :belonging
             object = class_name.constantize.create options
             self.add_belongable object, belonging_options
+            object
         end
         def create_belongable! class_name, options = {}
             belonging_options = options.delete :belonging
             object = class_name.constantize.create! options
             self.add_belongable! object, belonging_options
+            object
+        end
+
+        def belongables_with_scope scope, source_type = nil
+            self.belonger_belongings.where(scope: scope.to_s).map { |belonging| source_type.nil? || belonging.belongable.class.name == source_type ? belonging.belongable : nil }.compact
         end
 
     end

@@ -14,6 +14,7 @@ acts_as_belongable is a Rubygem that provides an associations engine for Rails a
     * [acts_as_belonger](#acts_as_belonger)
     * [acts_as_belongable](#acts_as_belongable)
     * [acts_as_list](#acts_as_list)
+    * [Scopes](#scopes)
 * [To Do](#to-do)
 * [Contributing](#contributing)
     * [Contributors](#contributors)
@@ -121,6 +122,31 @@ acts_as_belongable integrates with [acts_as_list](). It adds a `position` column
 
 ```ruby
 c.add_belongable Event.first, position: 1
+```
+
+### Scopes
+
+You can use scopes to add details to an relation:
+
+```ruby
+u = User.first
+e = u.create_belongable 'Event'
+c = u.create_belongable 'Conference'
+u = User.last
+u.add_belongable 'Event', scope: 'collaboration'
+u.add_belongable 'Conference', scope: 'collaboration'
+
+# Get all belongables with a specific scope
+u.belongables_with_scope :collaboration
+
+# Get `Event` belongables with a specific scope
+u.belongables_with_scope :collaboration, 'Event'
+
+# Get all belongers with a specific scope
+e.belongers_with_scope :collaboration
+
+# Get `User` belongers with a specific scope
+e.belongers_with_scope :collaboration, 'User'
 ```
 
 ---

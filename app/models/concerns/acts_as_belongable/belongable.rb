@@ -27,11 +27,17 @@ module ActsAsBelongable
             belonging_options = options.delete :belonging
             object = class_name.constantize.create options
             self.add_to_belonger object, belonging_options
+            object
         end
         def create_belonger! class_name, options = {}
             belonging_options = options.delete :belonging
             object = class_name.constantize.create! options
             self.add_to_belonger! object, belonging_options
+            object
+        end
+
+        def belongers_with_scope scope, source_type = nil
+            self.belongable_belongings.where(scope: scope.to_s).map { |belonging| source_type.nil? || belonging.belonger.class.name == source_type ? belonging.belonger : nil }.compact
         end
 
     end
