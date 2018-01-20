@@ -1,0 +1,12 @@
+class ActsAsBelongableMigration < ActiveRecord::Migration<%= migration_version %>
+    def change
+        create_table :belongings do |t|
+
+            t.references :belonger, polymorphic: true, index: true
+            t.references :belonging, polymorphic: true, index: true
+
+            t.timestamps null: false
+
+        end
+    end
+end
