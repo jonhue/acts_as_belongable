@@ -11,7 +11,8 @@ acts_as_belongable is a Rubygem that provides an associations engine for Rails a
 * [Installation](#installation)
 * [Usage](#usage)
     * [Associations](#associations)
-    * [Creating records](#creating records)
+    * [acts_as_belonger](#acts_as_belonger)
+    * [acts_as_belongable](#acts_as_belongable)
     * [acts_as_list](#acts_as_list)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -76,13 +77,51 @@ class Conference < ApplicationRecord
 end
 ```
 
-### Creating records
+### acts_as_belonger
 
-...
+`acts_as_belonger` makes the following methods available:
+
+```ruby
+c = Conference.first
+
+# Returns all belongables associated with this record
+c.belongables
+
+# Adds a belongable to this record
+c.add_belongable Event.first
+# c.add_belongable! Event.first
+
+# Creates a belongable record and adds it to this record
+c.create_belongable 'Event', options
+# c.create_belongable! Event, options
+```
+
+### acts_as_belongable
+
+`acts_as_belongable` makes the following methods available:
+
+```ruby
+e = Event.first
+
+# Returns all belongers associated with this record
+e.belongers
+
+# Adds this record to a belonger
+c.add_to_belonger Conference.first
+# c.add_to_belonger! Conference.first
+
+# Adds this record to a newly created belonger
+c.create_belonger 'Conference', options
+# c.create_belonger! Conference, options
+```
 
 ### acts_as_list
 
-...
+acts_as_belongable integrates with [acts_as_list](). It adds a `position` column to `Belonging`:
+
+```ruby
+c.add_belongable Event.first, position: 1
+```
 
 ---
 
