@@ -10,6 +10,9 @@ acts_as_belongable is a Rubygem that provides an associations engine for Rails a
 
 * [Installation](#installation)
 * [Usage](#usage)
+    * [Associations](#associations)
+    * [Creating records](#creating records)
+    * [acts_as_list](#acts_as_list)
 * [To Do](#to-do)
 * [Contributing](#contributing)
     * [Contributors](#contributors)
@@ -48,7 +51,11 @@ To wrap things up, migrate the changes into your database:
 
     $ rails db:migrate
 
+---
+
 ## Usage
+
+### Associations
 
 ```ruby
 class User < ApplicationRecord
@@ -68,6 +75,14 @@ class Conference < ApplicationRecord
     belonger :events, 'Event'
 end
 ```
+
+### Creating records
+
+...
+
+### acts_as_list
+
+...
 
 ---
 
