@@ -9,8 +9,12 @@ module ActsAsBelongable
                 has_many :belongable_belongings, as: :belongable, class_name: 'Belonging', dependent: :destroy
             end
 
-            def belongable name, source_type
-                has_many name.to_sym, through: :belongable_belongings, source: :belonger, source_type: source_type.to_s
+            def belongable name, source_type, options = {}
+                belongable_belongings_with_scope options[:scope] if options.has_key? :scope
+                has_many name.to_sym, through: ( options.has_key? :scope ? "belongable_belongings_#{scope}".to_sym : :belonger_belongings ), source: :belonger, source_type: source_type.to_s
+            end
+            def belongable_belongings_with_scope scope
+                has_many "belongable_belongings_#{scope}".to_sym, -> { where(scope: scope.to_s) }, as: :belongable, class_name: 'Belonging', dependent: :destroy
             end
         end
 

@@ -149,6 +149,22 @@ e.belongers_with_scope :collaboration
 e.belongers_with_scope :collaboration, 'User'
 ```
 
+You are also able to restrict associations to specific scopes:
+
+```ruby
+class User < ApplicationRecord
+    acts_as_belonger
+    belonger :conference_collaborations, 'Conference', scope: :collaboration
+    belonger :conference_attendings, 'User', scope: :membership
+end
+
+class Conference < ApplicationRecord
+    acts_as_belongable
+    belongable :collaborators, 'User', scope: :collaboration
+    belongable :attendees, 'User', scope: :membership
+end
+```
+
 ---
 
 ## To Do
