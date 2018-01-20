@@ -5,6 +5,8 @@ class ActsAsBelongableMigration < ActiveRecord::Migration<%= migration_version %
             t.references :belonger, polymorphic: true, index: true
             t.references :belonging, polymorphic: true, index: true
 
+            t.integer :position
+
             t.timestamps null: false
 
         end
