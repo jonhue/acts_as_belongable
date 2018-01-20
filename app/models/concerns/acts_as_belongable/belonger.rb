@@ -24,12 +24,14 @@ module ActsAsBelongable
         end
 
         def create_belongable class_name, options = {}
+            belonging_options = options.delete :belonging
             object = class_name.constantize.create options
-            self.add_belongable object
+            self.add_belongable object, belonging_options
         end
         def create_belongable! class_name, options = {}
+            belonging_options = options.delete :belonging
             object = class_name.constantize.create! options
-            self.add_belongable! object
+            self.add_belongable! object, belonging_options
         end
 
     end
