@@ -3,7 +3,7 @@ class ActsAsBelongableMigration < ActiveRecord::Migration<%= migration_version %
         create_table :belongings do |t|
 
             t.references :belonger, polymorphic: true, index: true
-            t.references :belonging, polymorphic: true, index: true
+            t.references :belongable, polymorphic: true, index: true
 
             t.string :scope
             t.integer :position
