@@ -4,6 +4,11 @@
 
 * nothing yet
 
+### 1.1.2 - 2018/02/05
+
+* bugfixes
+    * require acts_as_list
+
 ### 1.1.1 - 2018/01/21
 
 * bugfixes
