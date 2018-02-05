@@ -155,7 +155,7 @@ You are also able to restrict associations to specific scopes:
 class User < ApplicationRecord
     acts_as_belonger
     belonger :conference_collaborations, 'Conference', scope: :collaboration
-    belonger :conference_attendings, 'User', scope: :membership
+    belonger :conference_attendings, 'Conference', scope: :membership
 end
 
 class Conference < ApplicationRecord
