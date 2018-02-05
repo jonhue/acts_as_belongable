@@ -1,3 +1,4 @@
+require 'acts_as_list'
 require 'acts_as_belongable/version'
 
 module ActsAsBelongable
