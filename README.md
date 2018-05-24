@@ -93,7 +93,7 @@ c.add_belongable Event.first
 # c.add_belongable! Event.first
 
 # Creates a belongable record and adds it to this record
-c.create_belongable 'Event', options
+c.create_belongable Event, options
 # c.create_belongable! Event, options
 ```
 
@@ -112,7 +112,7 @@ c.add_to_belonger Conference.first
 # c.add_to_belonger! Conference.first
 
 # Adds this record to a newly created belonger
-c.create_belonger 'Conference', options
+c.create_belonger Conference, options
 # c.create_belonger! Conference, options
 ```
 
@@ -130,11 +130,11 @@ You can use scopes to add details to an relation:
 
 ```ruby
 u = User.first
-e = u.create_belongable 'Event'
-c = u.create_belongable 'Conference'
+e = u.create_belongable Event
+c = u.create_belongable Conference
 u = User.last
-u.add_belongable 'Event', scope: 'collaboration'
-u.add_belongable 'Conference', scope: 'collaboration'
+u.add_belongable Event, scope: 'collaboration'
+u.add_belongable Conference, scope: 'collaboration'
 
 # Get all belongables with a specific scope
 u.belongables_with_scope :collaboration
