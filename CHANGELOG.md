@@ -4,7 +4,7 @@
 
 * nothing yet
 
-### 2.0.0 - 2018/05/24
+### 2.1.2 - 2018/05/24
 
 * enhancements
     * pass classes to methods instead of their names
