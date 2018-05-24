@@ -31,15 +31,15 @@ module ActsAsBelongable
             self.belongable_belongings.create! options
         end
 
-        def create_belonger class_name, options = {}
-            belonging_options = options.delete :belonging
-            object = class_name.constantize.create options
+        def create_belonger _class, options = {}
+            belonging_options = options.delete(:belonging) || {}
+            object = _class.create options
             self.add_to_belonger object, belonging_options
             object
         end
-        def create_belonger! class_name, options = {}
-            belonging_options = options.delete :belonging
-            object = class_name.constantize.create! options
+        def create_belonger! _class, options = {}
+            belonging_options = options.delete(:belonging) || {}
+            object = _class.create! options
             self.add_to_belonger! object, belonging_options
             object
         end

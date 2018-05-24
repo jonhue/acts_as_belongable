@@ -4,6 +4,13 @@
 
 * nothing yet
 
+### 2.0.0 - 2018/05/24
+
+* enhancements
+    * pass classes to methods instead of their names
+* bugfixes
+    * fixed `undefined method '[]=' for nil:NilClass`
+
 ### 1.1.2 - 2018/02/05
 
 * bugfixes
