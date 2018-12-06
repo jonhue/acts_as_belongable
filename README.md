@@ -1,6 +1,6 @@
 # acts_as_belongable
 
-[![Gem Version](https://badge.fury.io/rb/acts_as_belongable.svg)](https://badge.fury.io/rb/acts_as_belongable) <img src="https://travis-ci.org/jonhue/acts_as_belongable.svg?branch=master" />
+[![Gem Version](https://badge.fury.io/rb/acts_as_belongable.svg)](https://badge.fury.io/rb/acts_as_belongable) ![Travis](https://travis-ci.org/jonhue/acts_as_belongable.svg?branch=master)
 
 acts_as_belongable is a Rubygem that provides an associations engine for Rails apps. It's primary use case is to simplify `has_many through: ...` relations.
 
@@ -15,17 +15,16 @@ acts_as_belongable is a Rubygem that provides an associations engine for Rails a
   * [acts_as_belongable](#acts_as_belongable)
   * [acts_as_list](#acts_as_list)
   * [Scopes](#scopes)
+* [Testing](#testing)
 * [To Do](#to-do)
 * [Contributing](#contributing)
-  * [Contributors](#contributors)
   * [Semantic versioning](#semantic-versioning)
-* [License](#license)
 
 ---
 
 ## Installation
 
-acts_as_belongable works with Rails 5 onwards. You can add it to your `Gemfile` with:
+acts_as_belongable works with Rails 5.0 onwards. You can add it to your `Gemfile` with:
 
 ```ruby
 gem 'acts_as_belongable'
@@ -130,8 +129,8 @@ You can use scopes to add details to an relation:
 
 ```ruby
 user = User.first
-event = u.create_belongable(Event)
-conference = u.create_belongable(Conference)
+event = user.create_belongable(Event)
+conference = user.create_belongable(Conference)
 user = User.last
 user.add_belongable(Event, scope: 'collaboration')
 user.add_belongable(Conference, scope: 'collaboration')
@@ -167,9 +166,27 @@ end
 
 ---
 
+## Testing
+
+1. Fork this repository
+2. Clone your forked git locally
+3. Install dependencies
+
+    `$ bundle install`
+
+4. Run specs
+
+    `$ bundle exec rspec`
+
+5. Run RuboCop
+
+    `$ bundle exec rubocop`
+
+---
+
 ## To Do
 
-[Here](https://github.com/jonhue/acts_as_belongable/projects/1) is the full list of current projects.
+We use [GitHub projects](https://github.com/jonhue/acts_as_belongable/projects/1) to coordinate the work on this project.
 
 To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/acts_as_belongable/issues/new).
 
@@ -181,36 +198,6 @@ We hope that you will consider contributing to acts_as_belongable. Please read t
 
 [Learn more about contributing to this repository](CONTRIBUTING.md), [Code of Conduct](CODE_OF_CONDUCT.md)
 
-### Contributors
-
-Give the people some :heart: who are working on this project. See them all at:
-
-https://github.com/jonhue/acts_as_belongable/graphs/contributors
-
 ### Semantic Versioning
 
 acts_as_belongable follows Semantic Versioning 2.0 as defined at http://semver.org.
-
-## License
-
-MIT License
-
-Copyright (c) 2018 Jonas Hübotter
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
