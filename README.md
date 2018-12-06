@@ -10,15 +10,15 @@ acts_as_belongable is a Rubygem that provides an associations engine for Rails a
 
 * [Installation](#installation)
 * [Usage](#usage)
-    * [Associations](#associations)
-    * [acts_as_belonger](#acts_as_belonger)
-    * [acts_as_belongable](#acts_as_belongable)
-    * [acts_as_list](#acts_as_list)
-    * [Scopes](#scopes)
+  * [Associations](#associations)
+  * [acts_as_belonger](#acts_as_belonger)
+  * [acts_as_belongable](#acts_as_belongable)
+  * [acts_as_list](#acts_as_list)
+  * [Scopes](#scopes)
 * [To Do](#to-do)
 * [Contributing](#contributing)
-    * [Contributors](#contributors)
-    * [Semantic versioning](#semantic-versioning)
+  * [Contributors](#contributors)
+  * [Semantic versioning](#semantic-versioning)
 * [License](#license)
 
 ---
@@ -61,20 +61,20 @@ To wrap things up, migrate the changes into your database:
 
 ```ruby
 class User < ApplicationRecord
-    acts_as_belongable
-    belongable :attending, 'Event'
+  acts_as_belongable
+  belongable :attending, 'Event'
 end
 
 class Event < ApplicationRecord
-    acts_as_belonger
-    acts_as_belongable
-    belonger :attendees, 'User'
-    belongable :conferences, 'Conference'
+  acts_as_belonger
+  acts_as_belongable
+  belonger :attendees, 'User'
+  belongable :conferences, 'Conference'
 end
 
 class Conference < ApplicationRecord
-    acts_as_belonger
-    belonger :events, 'Event'
+  acts_as_belonger
+  belonger :events, 'Event'
 end
 ```
 
@@ -83,17 +83,17 @@ end
 `acts_as_belonger` makes the following methods available:
 
 ```ruby
-c = Conference.first
+conference = Conference.first
 
 # Returns all belongables associated with this record
-c.belongables
+conference.belongables
 
 # Adds a belongable to this record
-c.add_belongable Event.first
+conference.add_belongable(Event.first)
 # c.add_belongable! Event.first
 
 # Creates a belongable record and adds it to this record
-c.create_belongable Event, options
+conference.create_belongable(Event, options)
 # c.create_belongable! Event, options
 ```
 
@@ -102,17 +102,17 @@ c.create_belongable Event, options
 `acts_as_belongable` makes the following methods available:
 
 ```ruby
-e = Event.first
+event = Event.first
 
 # Returns all belongers associated with this record
-e.belongers
+event.belongers
 
 # Adds this record to a belonger
-c.add_to_belonger Conference.first
+conference.add_to_belonger(Conference.first)
 # c.add_to_belonger! Conference.first
 
 # Adds this record to a newly created belonger
-c.create_belonger Conference, options
+conference.create_belonger(Conference, options)
 # c.create_belonger! Conference, options
 ```
 
@@ -121,7 +121,7 @@ c.create_belonger Conference, options
 acts_as_belongable integrates with [acts_as_list](). It adds a `position` column to `Belonging`:
 
 ```ruby
-c.add_belongable Event.first, position: 1
+conference.add_belongable(Event.first, position: 1)
 ```
 
 ### Scopes
@@ -129,39 +129,39 @@ c.add_belongable Event.first, position: 1
 You can use scopes to add details to an relation:
 
 ```ruby
-u = User.first
-e = u.create_belongable Event
-c = u.create_belongable Conference
-u = User.last
-u.add_belongable Event, scope: 'collaboration'
-u.add_belongable Conference, scope: 'collaboration'
+user = User.first
+event = u.create_belongable(Event)
+conference = u.create_belongable(Conference)
+user = User.last
+user.add_belongable(Event, scope: 'collaboration')
+user.add_belongable(Conference, scope: 'collaboration')
 
 # Get all belongables with a specific scope
-u.belongables_with_scope :collaboration
+user.belongables_with_scope(:collaboration)
 
 # Get `Event` belongables with a specific scope
-u.belongables_with_scope :collaboration, 'Event'
+user.belongables_with_scope(:collaboration, belongable_type: 'Event')
 
 # Get all belongers with a specific scope
-e.belongers_with_scope :collaboration
+event.belongers_with_scope(:collaboration)
 
 # Get `User` belongers with a specific scope
-e.belongers_with_scope :collaboration, 'User'
+event.belongers_with_scope(:collaboration, belonger_type: 'User')
 ```
 
 You are also able to restrict associations to specific scopes:
 
 ```ruby
 class User < ApplicationRecord
-    acts_as_belonger
-    belonger :conference_collaborations, 'Conference', scope: :collaboration
-    belonger :conference_attendings, 'Conference', scope: :membership
+  acts_as_belonger
+  belonger :conference_collaborations, 'Conference', scope: :collaboration
+  belonger :conference_attendings, 'Conference', scope: :membership
 end
 
 class Conference < ApplicationRecord
-    acts_as_belongable
-    belongable :collaborators, 'User', scope: :collaboration
-    belongable :attendees, 'User', scope: :membership
+  acts_as_belongable
+  belongable :collaborators, 'User', scope: :collaboration
+  belongable :attendees, 'User', scope: :membership
 end
 ```
 
