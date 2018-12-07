@@ -139,13 +139,13 @@ user.add_belongable(Conference, scope: 'collaboration')
 user.belongables_with_scope(:collaboration)
 
 # Get `Event` belongables with a specific scope
-user.belongables_with_scope(:collaboration, belongable_type: 'Event')
+user.belongables_with_scope(:collaboration, source_type: 'Event')
 
 # Get all belongers with a specific scope
 event.belongers_with_scope(:collaboration)
 
 # Get `User` belongers with a specific scope
-event.belongers_with_scope(:collaboration, belonger_type: 'User')
+event.belongers_with_scope(:collaboration, source_type: 'User')
 ```
 
 You are also able to restrict associations to specific scopes:
